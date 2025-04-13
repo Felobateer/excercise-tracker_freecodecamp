@@ -48,12 +48,12 @@ app.post('/api/users/:_id/exercises', (req, res) => {
   const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.json({ error: 'User not found' });
   }
 
   const { description, duration, date } = req.body;
   if (!description || !duration) {
-    return res.status(400).json({ error: 'Description and duration are required' });
+    return res.json({ error: 'Description and duration are required' });
   }
 
   const exercise = {
@@ -75,7 +75,7 @@ app.get('/api/users/:_id/logs', (req, res) => {
   const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {
-    return res.status(404).json({ error: 'User not found' });
+    return res.json({ error: 'User not found' });
   }
 
   const { from, to, limit } = req.query;

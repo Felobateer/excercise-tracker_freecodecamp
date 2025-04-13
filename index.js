@@ -33,7 +33,7 @@ app.get('/api/users', (req, res) => {
   res.json(users);
 })
 
-app.get('/api/user/:id', (req, res) => {
+app.get('/api/user/:_id', (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find(u => u._id === userId);
   if (!user) {
@@ -43,7 +43,7 @@ app.get('/api/user/:id', (req, res) => {
 })
 
 
-app.post('/api/user/:id/excercise', (req, res) => {
+app.post('/api/user/:_id/excercise', (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find(u => u._id === userId);
   if (!user) {
@@ -70,7 +70,7 @@ app.post('/api/user/:id/excercise', (req, res) => {
   });
 })
 
-app.get('/api/user/:id/logs', (req, res) => {
+app.get('/api/user/:_id/logs', (req, res) => {
   const userId = parseInt(req.params.id);
   const user = users.find(u => u._id === userId);
   if (!user) {

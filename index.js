@@ -20,10 +20,11 @@ app.post('/api/users', (req, res) => {
     return res.status(400).json({ error: 'Username is required' });
   }
 
-  const userId = Math.floor(Math.random() * 1000000);
+  const userId = Date.now().toString(); 
   const user = {
     username: username,
     _id: userId,
+    logs: [],
   };
   users.push(user);
   res.json({ username: username, _id: userId });
@@ -34,7 +35,7 @@ app.get('/api/users', (req, res) => {
 })
 
 app.get('/api/user/:_id', (req, res) => {
-  const userId = parseInt(req.params.id);
+  const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
@@ -43,8 +44,8 @@ app.get('/api/user/:_id', (req, res) => {
 })
 
 
-app.post('/api/user/:_id/excercise', (req, res) => {
-  const userId = parseInt(req.params.id);
+app.post('/api/users/:_id/excercises', (req, res) => {
+  const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
@@ -70,8 +71,8 @@ app.post('/api/user/:_id/excercise', (req, res) => {
   });
 })
 
-app.get('/api/user/:_id/logs', (req, res) => {
-  const userId = parseInt(req.params.id);
+app.get('/api/users/:_id/logs', (req, res) => {
+  const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });

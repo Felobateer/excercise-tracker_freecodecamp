@@ -63,7 +63,13 @@ app.post('/api/users/:_id/exercises', (req, res) => {
   };
 
   user.logs.push(exercise);
-  res.json(user);
+  res.json({
+    username: user.username,
+    description: exercise.description,
+    duration: exercise.duration,
+    date: exercise.date.toDateString(),
+    _id: user._id,
+  });
 })
 
 app.get('/api/users/:_id/logs', (req, res) => {

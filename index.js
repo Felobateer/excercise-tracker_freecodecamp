@@ -44,7 +44,7 @@ app.get('/api/user/:_id', (req, res) => {
 })
 
 
-app.post('/api/users/:_id/excercises', (req, res) => {
+app.post('/api/users/:_id/exercises', (req, res) => {
   const userId = parseInt(req.params._id);
   const user = users.find(u => u._id === userId);
   if (!user) {

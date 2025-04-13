@@ -35,7 +35,7 @@ app.get('/api/users', (req, res) => {
 })
 
 app.get('/api/user/:_id', (req, res) => {
-  const userId = parseInt(req.params._id);
+  const userId = req.params._id;
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.status(404).json({ error: 'User not found' });
@@ -45,7 +45,7 @@ app.get('/api/user/:_id', (req, res) => {
 
 
 app.post('/api/users/:_id/exercises', (req, res) => {
-  const userId = parseInt(req.params._id);
+  const userId = req.params._id;
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.json({ error: 'User not found' });
@@ -67,7 +67,7 @@ app.post('/api/users/:_id/exercises', (req, res) => {
 })
 
 app.get('/api/users/:_id/logs', (req, res) => {
-  const userId = parseInt(req.params._id);
+  const userId = req.params._id;
   const user = users.find(u => u._id === userId);
   if (!user) {
     return res.json({ error: 'User not found' });
